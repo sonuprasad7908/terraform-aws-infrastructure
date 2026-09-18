@@ -28,3 +28,25 @@ module "network" {
     Environment = "development"
   }
 }
+module "security" {
+  source = "../../modules/security"
+
+  name   = "portfolio-dev"
+  vpc_id = module.network.vpc_id
+
+  alb_ingress_cidrs = [
+    "0.0.0.0/0"
+  ]
+
+  alb_ingress_ports = [
+    80,
+    443
+  ]
+
+  application_port = 3000
+
+  tags = {
+    Project     = "terraform-aws-infrastructure"
+    Environment = "development"
+  }
+}
