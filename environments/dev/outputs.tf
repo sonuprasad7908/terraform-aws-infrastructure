@@ -21,3 +21,17 @@ output "application_security_group_id" {
   description = "Development application security group ID"
   value       = module.security.application_security_group_id
 }
+output "alb_dns_name" {
+  description = "Development Application Load Balancer DNS name"
+  value       = module.load_balancer.dns_name
+}
+
+output "alb_arn" {
+  description = "Development Application Load Balancer ARN"
+  value       = module.load_balancer.load_balancer_arn
+}
+
+output "target_group_arn" {
+  description = "Development application target group ARN"
+  value       = module.load_balancer.target_group_arn
+}

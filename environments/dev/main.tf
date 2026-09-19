@@ -50,3 +50,24 @@ module "security" {
     Environment = "development"
   }
 }
+module "load_balancer" {
+  source = "../../modules/load-balancer"
+
+  name   = "portfolio-dev"
+  vpc_id = module.network.vpc_id
+
+  public_subnet_ids = values(module.network.public_subnet_ids)
+
+  security_group_ids = [
+    module.security.alb_security_group_id
+  ]
+
+  listener_port     = 80
+  application_port  = 3000
+  health_check_path = "/health"
+
+  tags = {
+    Project     = "terraform-aws-infrastructure"
+    Environment = "development"
+  }
+}
