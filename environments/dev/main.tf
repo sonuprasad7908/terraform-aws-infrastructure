@@ -71,3 +71,26 @@ module "load_balancer" {
     Environment = "development"
   }
 }
+module "compute" {
+  source = "../../modules/compute"
+
+  name          = "portfolio-dev"
+  ami_id        = var.compute_ami_id
+  instance_type = "t3.micro"
+
+  private_subnet_ids = values(module.network.private_subnet_ids)
+
+  security_group_id = module.security.application_security_group_id
+  target_group_arn  = module.load_balancer.target_group_arn
+
+  min_size         = 1
+  desired_capacity = 2
+  max_size         = 3
+
+  health_check_grace_period = 300
+
+  tags = {
+    Project     = "terraform-aws-infrastructure"
+    Environment = "development"
+  }
+}
