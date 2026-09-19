@@ -35,3 +35,17 @@ output "target_group_arn" {
   description = "Development application target group ARN"
   value       = module.load_balancer.target_group_arn
 }
+output "launch_template_id" {
+  description = "Development EC2 Launch Template ID"
+  value       = module.compute.launch_template_id
+}
+
+output "autoscaling_group_name" {
+  description = "Development Auto Scaling Group name"
+  value       = module.compute.autoscaling_group_name
+}
+
+output "autoscaling_group_arn" {
+  description = "Development Auto Scaling Group ARN"
+  value       = module.compute.autoscaling_group_arn
+}

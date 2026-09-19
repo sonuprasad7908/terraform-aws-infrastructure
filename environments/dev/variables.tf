@@ -3,3 +3,7 @@ variable "aws_region" {
   type        = string
   default     = "ap-south-1"
 }
+variable "compute_ami_id" {
+  description = "AMI ID used by the development compute module"
+  type        = string
+}
